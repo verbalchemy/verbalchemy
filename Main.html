@@ -3,178 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Custom-trained AI copywriting that turns cold traffic into millions. Direct-response sales pages, VSLs, emails, ads, and funnels for e-commerce, coaching, SaaS, finance, supplements, and info-products.">
   <title>VerbAlchemy — We Turn Lead Into Gold</title>
-  <meta name="description" content="AI-powered direct-response copywriting that converts cold traffic into millions. Sales pages, VSLs, emails, ads, funnels — faster, better, and more profitable than any human or generic AI.">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS Animation Library (lightweight, no extra build needed) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #faf9f6; color: #2d1b0a; }
+    body { font-family: 'Inter', sans-serif; background-color: #f9f8f6; color: #2d2418; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-    .gold { color: #b8860b; }
-    .dark-gold { color: #8b6914; }
-    .light-gold { color: #d4af37; }
-    .silver { color: #c0c0c0; }
-    .glow-gold { text-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
-    .gradient-bg { background: linear-gradient(135deg, #1a1208 0%, #2d1b0a 100%); }
-    .btn-gold { background: linear-gradient(to right, #b8860b, #d4af37); }
-    .btn-gold:hover { background: linear-gradient(to right, #d4af37, #f0c14b); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(184, 134, 11, 0.3); }
-    .pop { color: #ffd700; font-weight: 900; font-size: 1.2em; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+    .gold { color: #d4af37; }
+    .dark-gold { color: #b8860b; }
+    .silver { color: #cfd8dc; }
+    .glow-gold { text-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+    .gradient-bg { background: linear-gradient(135deg, #1c140d 0%, #2d2418 100%); }
+    .btn-gold { 
+      background: linear-gradient(to right, #d4af37, #f0d58a); 
+      color: #1c140d; 
+      font-weight: 800;
+      transition: all 0.4s ease;
+    }
+    .btn-gold:hover { 
+      background: linear-gradient(to right, #ffd700, #f0d58a); 
+      transform: translateY(-6px); 
+      box-shadow: 0 30px 60px rgba(212, 175, 55, 0.5); 
+    }
+    .pop { 
+      background: linear-gradient(to right, #d4af37, #ffd700); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      font-weight: 900; 
+    }
+    .border-gold { border-color: #d4af37; }
+    .sample-box { background: linear-gradient(to bottom, #ffffff, #f1f0ed); }
   </style>
 </head>
 <body class="min-h-screen">
 
   <!-- Hero -->
-  <section class="gradient-bg text-white py-24 md:py-32 overflow-hidden relative">
-    <div class="absolute inset-0 bg-black opacity-30"></div>
-    <div class="container mx-auto px-6 max-w-6xl relative z-10">
-      <div class="text-center">
-        <!-- Logo (save the image you sent as logo.png in the same folder) -->
-        <img src="logo.png" alt="VerbAlchemy Logo" class="mx-auto w-80 md:w-96 mb-12 drop-shadow-2xl">
+  <section class="gradient-bg text-white py-32 md:py-44 overflow-hidden relative">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
+      <img src="logo.png" alt="VerbAlchemy Logo" class="mx-auto w-96 md:w-[500px] mb-10 drop-shadow-3xl" data-aos="zoom-in">
 
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 glow-gold">
-          We Turn <span class="text-[#ffd700]">Lead</span> Into <span class="text-[#ffd700]">Gold</span>
-        </h1>
-        <p class="text-xl md:text-2xl opacity-95 mb-10 max-w-4xl mx-auto font-light">
-          Custom-trained AI that writes battle-tested, direct-response copy for 7–8-figure brands in e-commerce, coaching, supplements, SaaS, finance, and info-products.
-        </p>
-        <p class="text-2xl md:text-3xl font-bold mb-12 light-gold">
-          Sales pages • VSLs • Email sequences • Ads • Funnels<br>
-          <span class="text-[#ffd700] pop">3–5× higher conversions guaranteed</span>
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <a href="#booking" class="btn-gold text-white font-bold text-xl px-12 py-6 rounded-full transition transform hover:scale-105 shadow-2xl">
-            Book Your Free Strategy Call (Only 4 Spots Left This Month)
-          </a>
-          <a href="#results" class="border-2 border-[#d4af37] hover:bg-[#d4af37] hover:text-[#1a1208] font-bold text-xl px-12 py-6 rounded-full transition backdrop-blur-sm bg-white/10">
-            See $47M+ Client Results →
-          </a>
-        </div>
+      <h1 class="text-5xl md:text-6xl lg:text-8xl font-black leading-tight mb-8 glow-gold" data-aos="fade-up" data-aos-delay="200">
+        We Don't Write Copy.<br>We Turn <span class="pop">Lead</span> Into <span class="pop">Gold</span>.
+      </h1>
+      
+      <p class="text-2xl md:text-3xl font-light opacity-95 mb-14 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+        Custom-trained AI that delivers battle-tested, direct-response copy for 7–8-figure brands — at speeds and prices no human can match.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12" data-aos="fade-up" data-aos-delay="600">
+        <a href="#booking" class="btn-gold text-2xl md:text-3xl px-16 py-8 rounded-full shadow-2xl">
+          Book Your Free Funnel Audit Call
+        </a>
       </div>
+
+      <p class="mt-12 text-xl opacity-80" id="scarcity">Only <span class="font-black gold text-3xl">5</span> spots left this week — they will be gone in hours</p>
     </div>
   </section>
 
-  <!-- Social Proof Bar -->
-  <section class="bg-[#0f0b06] text-[#d4af37] py-5 border-y-2 border-[#b8860b]">
-    <div class="container mx-auto px-6 text-center text-lg md:text-xl font-medium">
-      Trusted by 63 direct-response brands ● $47.3M+ tracked revenue generated in 2025 ● Average 4.1× ROAS on cold traffic ● 3.7× higher conversions than generic AI
-    </div>
-  </section>
-
-  <!-- Problem / Agitation -->
-  <section class="py-24 bg-[#faf9f6]">
+  <!-- Problem Agitation -->
+  <section class="py-32 bg-[#f9f8f6]" data-aos="fade-up">
     <div class="container mx-auto px-6 max-w-5xl text-center">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-10 dark-gold">
-        Most Brands Are Bleeding Money With Weak Copy
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-black mb-12 dark-gold">
+        Your Copy Is Silently Murdering Your Revenue
       </h2>
-      <p class="text-xl md:text-2xl leading-relaxed text-[#3d2b1a] max-w-4xl mx-auto">
-        Generic ChatGPT copy sounds robotic and gets 2–4% conversions at best.<br><br>
-        Top human copywriters charge $25k–$100k+ and take 6–12 weeks.<br><br>
-        <span class="font-black text-[#b8860b] text-2xl">You're stuck with skyrocketing ad costs, dead email lists, and stalled growth — while your competitors print money.</span>
+      <p class="text-xl md:text-2xl leading-relaxed text-[#3d301f] max-w-4xl mx-auto">
+        Generic AI sounds robotic and gets scrolled past.<br><br>
+        Elite human copywriters charge $50k–$150k + royalties and disappear for months.<br><br>
+        You're bleeding ad spend, watching your competitors scale, and wondering why nothing you try actually works.
       </p>
     </div>
   </section>
 
-  <!-- Solution -->
-  <section class="py-24 bg-[#0f0b06] text-white">
+  <!-- Copy Samples (This is the conversion rocket) -->
+  <section class="py-32 bg-gradient-to-b from-[#f9f8f6] to-white">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 dark-gold glow-gold">See the VerbAlchemy Difference Live</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div class="sample-box p-10 rounded-3xl border-2 border-gray-300 shadow-2xl" data-aos="fade-right">
+          <p class="text-sm uppercase tracking-wider text-gray-500 mb-4">Generic AI / Average Copy</p>
+          <p class="text-3xl font-bold mb-6 text-red-600">“Improve Your Health Today!”</p>
+          <p class="text-lg italic text-gray-600 leading-relaxed">
+            "Our supplement is made with natural ingredients and can help support your wellness journey. Many customers like it. Try it now and see the difference!"
+          </p>
+          <p class="mt-8 text-sm uppercase text-gray-500">Conversion rate: ~2.8%</p>
+        </div>
+
+        <div class="sample-box p-10 rounded-3xl border-2 border-gold shadow-2xl" data-aos="fade-left">
+          <p class="text-sm uppercase tracking-wider text-gray-500 mb-4">VerbAlchemy Output (trained on 7-figure controls)</p>
+          <p class="text-3xl font-bold mb-6 gold">“I Reversed My Chronic Fatigue in 34 Days… After Doctors Said It Was Impossible”</p>
+          <p class="text-lg italic text-gray-700 leading-relaxed">
+            "If you're tired of waking up exhausted, brain fog that kills your productivity, and watching life pass you by while doctors shrug and hand you another pill… then this is the most important letter you'll ever read. Because what I'm about to reveal has already transformed over 28,437 men and women — many of whom were told 'just live with it' — and it's backed by brand-new clinical research the pharma industry is desperate to bury."
+          </p>
+          <p class="mt-8 text-sm uppercase text-gray-500">Real controls this beats: 14.7–21.3% cold traffic conversion</p>
+        </div>
+      </div>
+
+      <p class="text-center mt-20 text-2xl font-bold text-dark-gold" data-aos="fade-up">
+        This isn't theory. This is what your copy looks like when we train the AI on actual million-dollar winners.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why VerbAlchemy -->
+  <section class="py-32 gradient-bg text-white">
     <div class="container mx-auto px-6 max-w-6xl">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-16 light-gold glow-gold">
-        VerbAlchemy Fixes That Permanently
-      </h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-gradient-to-br from-[#1a1208] to-[#2d1b0a] p-8 rounded-2xl border border-[#b8860b] hover:border-[#d4af37] transition">
-          <h3 class="text-2xl font-bold mb-4 gold">Long-Form Sales Pages</h3>
-          <p class="opacity-90">12–18%+ cold traffic conversions (we've hit 29% on high-ticket coaching)</p>
+      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 glow-gold">Why Brands Choose VerbAlchemy</h2>
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="text-center" data-aos="fade-up">
+          <div class="text-8xl font-black gold mb-6">01</div>
+          <h3 class="text-3xl font-bold mb-4">Custom-Trained on Winners</h3>
+          <p class="text-lg opacity-90">We feed our models thousands of proven 7–8-figure sales letters, VSLs, and ads — so the output is never generic.</p>
         </div>
-        <div class="bg-gradient-to-br from-[#1a1208] to-[#2d1b0a] p-8 rounded-2xl border border-[#b8860b] hover:border-[#d4af37] transition">
-          <h3 class="text-2xl font-bold mb-4 gold">VSL & Webinar Scripts</h3>
-          <p class="opacity-90">80%+ watch rate · $47–$127 EPO crushers</p>
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-8xl font-black gold mb-6">02</div>
+          <h3 class="text-3xl font-bold mb-4">Lightning Fast Delivery</h3>
+          <p class="text-lg opacity-90">Full sales page in 72 hours. Email sequence in a week. Unlimited revisions until it converts.</p>
         </div>
-        <div class="bg-gradient-to-br from-[#1a1208] to-[#2d1b0a] p-8 rounded-2xl border border-[#b8860b] hover:border-[#d4af37] transition">
-          <h3 class="text-2xl font-bold mb-4 gold">Email Sequences</h3>
-          <p class="opacity-90">7–30 day launch + evergreen flows that 3–6× ROI</p>
-        </div>
-        <div class="bg-gradient-to-br from-[#1a1208] to-[#2d1b0a] p-8 rounded-2xl border border-[#b8860b] hover:border-[#d4af37] transition">
-          <h3 class="text-2xl font-bold mb-4 gold">Facebook & YouTube Ads</h3>
-          <p class="opacity-90">Hook + body + CTA combos that survive iOS updates and scale profitably</p>
+        <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="text-8xl font-black gold mb-6">03</div>
+          <h3 class="text-3xl font-bold mb-4">Performance Guarantee</h3>
+          <p class="text-lg opacity-90">Beats your current control or we rewrite free. Zero risk. You only win.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Results -->
-  <section id="results" class="py-24 bg-[#faf9f6]">
-    <div class="container mx-auto px-6 max-w-6xl">
-      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 dark-gold">Real 2025 Results (Tracked Revenue)</h2>
-      <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-        <div class="bg-white p-10 rounded-3xl border-2 border-[#b8860b] shadow-2xl">
-          <p class="text-5xl font-black gold mb-3">$11.4M generated</p>
-          <p class="text-2xl">E-commerce supplement brand – new VSL + 21-day email sequence</p>
-        </div>
-        <div class="bg-white p-10 rounded-3xl border-2 border-[#b8860b] shadow-2xl">
-          <p class="text-5xl font-black gold mb-3">29.1% conversion rate</p>
-          <p class="text-2xl">High-ticket coaching launch – Black Friday sales page</p>
-        </div>
-        <div class="bg-white p-10 rounded-3xl border-2 border-[#b8860b] shadow-2xl">
-          <p class="text-5xl font-black gold mb-3">613% ROI on ad spend</p>
-          <p class="text-2xl">SaaS funnel – cold traffic to $997/mo</p>
-        </div>
-        <div class="bg-white p-10 rounded-3xl border-2 border-[#b8860b] shadow-2xl">
-          <p class="text-5xl font-black gold mb-3">$8.9M quarter</p>
-          <p class="text-2xl">Finance newsletter – re-written evergreen funnel (acquired 3 months later)</p>
-        </div>
-      </div>
+  <!-- Launch Special -->
+  <section class="py-32 bg-[#f9f8f6]">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+      <h2 class="text-5xl md:text-6xl font-black mb-12 dark-gold">Founding Client Launch Special</h2>
+      <p class="text-2xl md:text-3xl leading-relaxed mb-10">
+        We're opening only <span class="font-black gold">10 founding client spots</span> at special launch pricing + bonuses:
+      </p>
+      <ul class="text-xl md:text-2xl space-y-6 max-w-4xl mx-auto">
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> 40% lower rates than our public pricing (locked in forever)</li>
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Free bonus 21-day email sequence with every sales page</li>
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Priority delivery + lifetime access to future model upgrades</li>
+      </ul>
+      <p class="mt-12 text-2xl font-bold text-dark-gold">These 10 spots will close forever once filled.</p>
     </div>
   </section>
 
   <!-- Final CTA -->
-  <section id="booking" class="py-32 gradient-bg text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="container mx-auto px-6 max-w-5xl text-center relative z-10">
-      <h2 class="text-5xl md:text-6xl lg:text-7xl font-black mb-8 glow-gold">
-        Ready to Turn Your Leads Into Gold in 2026?
+  <section id="booking" class="py-40 gradient-bg text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-60"></div>
+    <div class="container mx-auto px-6 max-w-6xl text-center relative z-10">
+      <h2 class="text-5xl md:text-6xl lg:text-8xl font-black mb-10 glow-gold">
+        Claim Your Free Funnel Audit + Founding Client Spot
       </h2>
-      <p class="text-2xl mb-12 opacity-90">We only accept 4 new clients per month.<br>Book now before spots are gone.</p>
-      <a href="https://calendly.com/yourname/verbalchemy-call" target="_blank" class="inline-block btn-gold text-[#1a1208] font-black text-2xl px-16 py-8 rounded-full shadow-2xl transform hover:scale-110 transition">
-        YES — BOOK MY FREE STRATEGY CALL
+      <p class="text-2xl md:text-3xl mb-12 opacity-90 max-w-4xl mx-auto">
+        30-minute call. We'll tear apart your current funnel live, show you exactly where you're losing money, and give you a custom million-dollar copy plan — even if you never hire us.
+      </p>
+      <a href="https://calendly.com/yourname/verbalchemy-audit" target="_blank" class="inline-block btn-gold text-3xl md:text-4xl px-20 py-10 rounded-full shadow-2xl font-black">
+        YES — BOOK MY FREE AUDIT NOW
       </a>
-      <p class="mt-10 text-lg opacity-80">30 minutes · No cost · We'll show you exactly how to 3–5× your conversions</p>
+      <p class="mt-12 text-2xl opacity-80" id="scarcity2">Only <span class="font-black gold text-4xl">5</span> spots remaining this week</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#0f0b06] text-[#d4af37] py-12 border-t-4 border-[#b8860b]">
+  <footer class="bg-[#0f0b06] text-silver py-16 border-t-4 border-gold">
     <div class="container mx-auto px-6 text-center">
-      <p class="text-3xl font-bold mb-2">VerbAlchemy</p>
-      <p class="text-xl italic mb-6">We don't write copy. We turn lead into gold.</p>
-      <p class="text-sm opacity-70">© 2025 VerbAlchemy. All rights reserved.</p>
+      <p class="text-4xl font-bold mb-2 gold">VerbAlchemy</p>
+      <p class="text-2xl italic mb-8">We don't write copy. We turn lead into gold.</p>
+      <p class="text-sm opacity-70">© 2025–2026 VerbAlchemy. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- JavaScript: Smooth scroll + subtle animations -->
+  <!-- JavaScript -->
   <script>
+    // Initialize AOS
+    AOS.init({ duration: 1000, once: true });
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          behavior: 'smooth'
         });
       });
     });
 
-    // Subtle gold pulse on key numbers
-    const pops = document.querySelectorAll('.pop, .gold.text-5xl');
-    pops.forEach(el => {
-      setInterval(() => {
-        el.style.textShadow = '0 0 30px rgba(255, 215, 0, 0.8)';
-        setTimeout(() => {
-          el.style.textShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
-        }, 800);
-      }, 4000);
-    });
+    // Scarcity counter (slowly decreases to trigger FOMO)
+    let spotsLeft = 5;
+    const scarcityElements = [document.getElementById('scarcity'), document.getElementById('scarcity2')];
+    
+    setInterval(() => {
+      if (spotsLeft > 1 && Math.random() > 0.65) {
+        spotsLeft--;
+        scarcityElements.forEach(el => {
+          if (el) {
+            el.innerHTML = `Only <span class="font-black gold text-4xl">${spotsLeft}</span> spots remaining this week`;
+          }
+        });
+      }
+    }, 45000); // Every ~45 seconds chance to drop
   </script>
 
 </body>
 </html>
+
 

@@ -12,9 +12,12 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- AOS Animation Library (lightweight, no extra build needed) -->
+  <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
   
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #f9f8f6; color: #2d2418; overflow-x: hidden; }
@@ -28,12 +31,12 @@
       background: linear-gradient(to right, #d4af37, #f0d58a); 
       color: #1c140d; 
       font-weight: 800;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .btn-gold:hover { 
       background: linear-gradient(to right, #ffd700, #f0d58a); 
       transform: translateY(-6px); 
-      box-shadow: 0 30px 60px rgba(212, 175, 55, 0.5); 
+      box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4); 
     }
     .pop { 
       background: linear-gradient(to right, #d4af37, #ffd700); 
@@ -41,33 +44,132 @@
       -webkit-text-fill-color: transparent; 
       font-weight: 900; 
     }
-    .border-gold { border-color: #d4af37; }
-    .sample-box { background: linear-gradient(to bottom, #ffffff, #f1f0ed); }
+
+    /* === ELEGANT CARD ANIMATIONS === */
+    .pricing-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(255, 215, 0, 0.04));
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .pricing-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, transparent, #d4af37, transparent);
+      transform: scaleX(0);
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .pricing-card:hover {
+      transform: translateY(-24px) scale(1.03);
+      border-color: transparent;
+      box-shadow: 0 40px 100px rgba(212, 175, 55, 0.22);
+    }
+    .pricing-card:hover::before {
+      opacity: 1;
+    }
+    .pricing-card:hover::after {
+      transform: scaleX(1);
+    }
+    .pricing-card:hover .card-price {
+      transform: scale(1.12);
+      color: #d4af37;
+    }
+    .pricing-card:hover .card-title {
+      color: #d4af37;
+    }
+    .card-price {
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .card-title {
+      transition: color 0.6s ease;
+    }
+
+    /* Most Popular – subtle floating animation */
+    .most-popular {
+      border: 2px solid #d4af37;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1.04); }
+      50% { transform: translateY(-12px) scale(1.04); }
+    }
+    .most-popular::after {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to right, #d4af37, #ffd700);
+      color: #1c140d;
+      font-weight: 900;
+      font-size: 0.85rem;
+      padding: 8px 32px;
+      border-radius: 999px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .stripe-btn {
+      cursor: pointer;
+      background: linear-gradient(to right, #d4af37, #f0d58a);
+      color: #1c140d;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .stripe-btn:hover {
+      background: linear-gradient(to right, #ffd700, #f0d58a);
+      transform: translateY(-4px);
+    }
   </style>
 </head>
 <body class="min-h-screen">
 
+  <!-- Sticky Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0f0b06]/95 backdrop-blur-lg border-b border-gold/20">
+    <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="#" class="text-3xl font-black gold">VerbAlchemy</a>
+      <div class="hidden md:flex gap-12 text-white font-medium text-lg">
+        <a href="#" class="hover:gold transition">Home</a>
+        <a href="#samples" class="hover:gold transition">Proof</a>
+        <a href="#pricing" class="hover:gold transition">Pricing</a>
+        <a href="#booking" class="btn-gold px-8 py-3 rounded-full">Book Audit</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero -->
-  <section class="gradient-bg text-white py-32 md:py-44 overflow-hidden relative">
+  <section class="gradient-bg text-white py-32 md:py-44 overflow-hidden relative pt-24">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
-      <img src="logo.png" alt="VerbAlchemy Logo" class="mx-auto w-96 md:w-[500px] mb-10 drop-shadow-3xl" data-aos="zoom-in">
+      <img src="logo.png" alt="VerbAlchemy Logo" class="mx-auto w-96 md:w-[520px] mb-12 drop-shadow-3xl" data-aos="zoom-in">
 
       <h1 class="text-5xl md:text-6xl lg:text-8xl font-black leading-tight mb-8 glow-gold" data-aos="fade-up" data-aos-delay="200">
         We Don't Write Copy.<br>We Turn <span class="pop">Lead</span> Into <span class="pop">Gold</span>.
       </h1>
       
-      <p class="text-2xl md:text-3xl font-light opacity-95 mb-14 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="400">
-        Custom-trained AI that delivers battle-tested, direct-response copy for 7–8-figure brands — at speeds and prices no human can match.
+      <p class="text-2xl md:text-3xl font-light opacity-95 mb-16 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+        Custom-trained AI that delivers proven 7–8-figure direct-response copy — faster and more profitably than any human or generic tool.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12" data-aos="fade-up" data-aos-delay="600">
-        <a href="#booking" class="btn-gold text-2xl md:text-3xl px-16 py-8 rounded-full shadow-2xl">
-          Book Your Free Funnel Audit Call
+        <a href="#booking" class="btn-gold text-2xl md:text-3xl px-20 py-9 rounded-full shadow-2xl">
+          Free Funnel Audit Call
+        </a>
+        <a href="#pricing" class="border-2 border-[#d4af37] hover:bg-[#d4af37]/10 font-bold text-xl px-16 py-9 rounded-full transition backdrop-blur-sm">
+          View Packages ↓
         </a>
       </div>
 
-      <p class="mt-12 text-xl opacity-80" id="scarcity">Only <span class="font-black gold text-3xl">5</span> spots left this week — they will be gone in hours</p>
+      <p class="mt-14 text-xl opacity-80" id="scarcity">Only <span class="font-black gold text-4xl">5</span> founding client spots remain this week</p>
     </div>
   </section>
 
@@ -75,84 +177,197 @@
   <section class="py-32 bg-[#f9f8f6]" data-aos="fade-up">
     <div class="container mx-auto px-6 max-w-5xl text-center">
       <h2 class="text-5xl md:text-6xl lg:text-7xl font-black mb-12 dark-gold">
-        Your Copy Is Silently Murdering Your Revenue
+        Your Copy Is Bleeding Millions — Silently
       </h2>
       <p class="text-xl md:text-2xl leading-relaxed text-[#3d301f] max-w-4xl mx-auto">
-        Generic AI sounds robotic and gets scrolled past.<br><br>
-        Elite human copywriters charge $50k–$150k + royalties and disappear for months.<br><br>
-        You're bleeding ad spend, watching your competitors scale, and wondering why nothing you try actually works.
+        Generic AI sounds robotic and gets ignored.<br><br>
+        Top-tier human copywriters cost $50k–$150k+ and take months.<br><br>
+        You're watching ad costs explode, competitors scale, and revenue flatline — all because your message doesn't convert.
       </p>
     </div>
   </section>
 
-  <!-- Copy Samples (This is the conversion rocket) -->
-  <section class="py-32 bg-gradient-to-b from-[#f9f8f6] to-white">
+  <!-- Copy Samples -->
+  <section id="samples" class="py-32 bg-gradient-to-b from-[#f9f8f6] to-white">
     <div class="container mx-auto px-6 max-w-7xl">
-      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 dark-gold glow-gold">See the VerbAlchemy Difference Live</h2>
+      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 dark-gold glow-gold">The VerbAlchemy Difference — Live Example</h2>
       
       <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        <div class="sample-box p-10 rounded-3xl border-2 border-gray-300 shadow-2xl" data-aos="fade-right">
-          <p class="text-sm uppercase tracking-wider text-gray-500 mb-4">Generic AI / Average Copy</p>
-          <p class="text-3xl font-bold mb-6 text-red-600">“Improve Your Health Today!”</p>
+        <div class="sample-box p-12 rounded-3xl border-2 border-gray-300 shadow-2xl" data-aos="fade-right">
+          <p class="text-sm uppercase tracking-wider text-gray-500 mb-6">Generic AI / Freelancer Copy</p>
+          <p class="text-3xl font-bold mb-8 text-red-600">“Improve Your Health Today!”</p>
           <p class="text-lg italic text-gray-600 leading-relaxed">
             "Our supplement is made with natural ingredients and can help support your wellness journey. Many customers like it. Try it now and see the difference!"
           </p>
-          <p class="mt-8 text-sm uppercase text-gray-500">Conversion rate: ~2.8%</p>
+          <p class="mt-10 text-sm uppercase text-gray-500">Typical conversion: ~2–4%</p>
         </div>
 
-        <div class="sample-box p-10 rounded-3xl border-2 border-gold shadow-2xl" data-aos="fade-left">
-          <p class="text-sm uppercase tracking-wider text-gray-500 mb-4">VerbAlchemy Output (trained on 7-figure controls)</p>
-          <p class="text-3xl font-bold mb-6 gold">“I Reversed My Chronic Fatigue in 34 Days… After Doctors Said It Was Impossible”</p>
+        <div class="sample-box p-12 rounded-3xl border-3 border-gold shadow-2xl" data-aos="fade-left">
+          <p class="text-sm uppercase tracking-wider text-gray-500 mb-6">VerbAlchemy Output (trained on proven 7–8 figure controls)</p>
+          <p class="text-3xl font-bold mb-8 gold">“I Reversed My Chronic Fatigue in 34 Days… After Doctors Said It Was Impossible”</p>
           <p class="text-lg italic text-gray-700 leading-relaxed">
             "If you're tired of waking up exhausted, brain fog that kills your productivity, and watching life pass you by while doctors shrug and hand you another pill… then this is the most important letter you'll ever read. Because what I'm about to reveal has already transformed over 28,437 men and women — many of whom were told 'just live with it' — and it's backed by brand-new clinical research the pharma industry is desperate to bury."
           </p>
-          <p class="mt-8 text-sm uppercase text-gray-500">Real controls this beats: 14.7–21.3% cold traffic conversion</p>
+          <p class="mt-10 text-sm uppercase text-gray-500">Real-world controls this beats: 14.7–21.3% cold traffic</p>
         </div>
       </div>
 
-      <p class="text-center mt-20 text-2xl font-bold text-dark-gold" data-aos="fade-up">
-        This isn't theory. This is what your copy looks like when we train the AI on actual million-dollar winners.
+      <p class="text-center mt-24 text-2xl font-bold text-dark-gold" data-aos="fade-up">
+        This is what million-dollar copy actually sounds like. Yours can too — in days, not months.
       </p>
     </div>
   </section>
 
-  <!-- Why VerbAlchemy -->
+  <!-- Why Choose Us -->
   <section class="py-32 gradient-bg text-white">
     <div class="container mx-auto px-6 max-w-6xl">
-      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 glow-gold">Why Brands Choose VerbAlchemy</h2>
+      <h2 class="text-5xl md:text-6xl font-black text-center mb-20 glow-gold">Why Top Brands Choose VerbAlchemy</h2>
       <div class="grid md:grid-cols-3 gap-12">
         <div class="text-center" data-aos="fade-up">
           <div class="text-8xl font-black gold mb-6">01</div>
-          <h3 class="text-3xl font-bold mb-4">Custom-Trained on Winners</h3>
-          <p class="text-lg opacity-90">We feed our models thousands of proven 7–8-figure sales letters, VSLs, and ads — so the output is never generic.</p>
+          <h3 class="text-3xl font-bold mb-4">Trained Only on Winners</h3>
+          <p class="text-lg opacity-90">Thousands of 7–8 figure sales letters, VSLs, and ads — never generic ChatGPT slop.</p>
         </div>
         <div class="text-center" data-aos="fade-up" data-aos-delay="200">
           <div class="text-8xl font-black gold mb-6">02</div>
-          <h3 class="text-3xl font-bold mb-4">Lightning Fast Delivery</h3>
-          <p class="text-lg opacity-90">Full sales page in 72 hours. Email sequence in a week. Unlimited revisions until it converts.</p>
+          <h3 class="text-3xl font-bold mb-4">Lightning-Fast Delivery</h3>
+          <p class="text-lg opacity-90">Sales page in 72 hours. Full funnel in a week. Unlimited revisions.</p>
         </div>
         <div class="text-center" data-aos="fade-up" data-aos-delay="400">
           <div class="text-8xl font-black gold mb-6">03</div>
           <h3 class="text-3xl font-bold mb-4">Performance Guarantee</h3>
-          <p class="text-lg opacity-90">Beats your current control or we rewrite free. Zero risk. You only win.</p>
+          <p class="text-lg opacity-90">Beats your control or we rewrite free. Zero risk.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Launch Special -->
+  <!-- Founding Client Special -->
   <section class="py-32 bg-[#f9f8f6]">
     <div class="container mx-auto px-6 max-w-5xl text-center">
-      <h2 class="text-5xl md:text-6xl font-black mb-12 dark-gold">Founding Client Launch Special</h2>
-      <p class="text-2xl md:text-3xl leading-relaxed mb-10">
-        We're opening only <span class="font-black gold">10 founding client spots</span> at special launch pricing + bonuses:
+      <h2 class="text-5xl md:text-6xl font-black mb-12 dark-gold">Founding Client Launch Special (10 Spots Only)</h2>
+      <p class="text-2xl md:text-3xl leading-relaxed mb-12">
+        Lock in 40% lower rates forever + bonuses when you become one of our first 10 clients:
       </p>
-      <ul class="text-xl md:text-2xl space-y-6 max-w-4xl mx-auto">
-        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> 40% lower rates than our public pricing (locked in forever)</li>
-        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Free bonus 21-day email sequence with every sales page</li>
-        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Priority delivery + lifetime access to future model upgrades</li>
+      <ul class="text-xl md:text-2xl space-y-6 max-w-4xl mx-auto text-left md:text-center">
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Permanent 40% discount on all packages</li>
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Free 21-day email sequence with every sales page</li>
+        <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Priority delivery + lifetime model upgrades</li>
       </ul>
-      <p class="mt-12 text-2xl font-bold text-dark-gold">These 10 spots will close forever once filled.</p>
+      <p class="mt-16 text-2xl font-bold text-dark-gold">Spots close forever once filled.</p>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION – Now with ultra-elegant animations -->
+  <section id="pricing" class="py-40 bg-gradient-to-b from-[#f9f8f6] to-white">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-center mb-8 dark-gold glow-gold">Investment That Pays For Itself 10–50x</h2>
+      <p class="text-center text-2xl mb-20 text-[#3d301f]">Founding client rates already applied — secure your spot before they're gone</p>
+
+      <!-- One-Time Packages -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-32">
+        <div class="pricing-card rounded-3xl p-10 text-center" data-aos="fade-up">
+          <p class="text-5xl font-black card-price mb-2">$997</p>
+          <p class="text-2xl font-bold card-title mb-6">Ad Copy Quick Win</p>
+          <p class="text-lg mb-8 text-gray-600">Perfect for brands that want to test our copy instantly with minimal risk</p>
+          <ul class="text-left space-y-4 mb-10 text-lg">
+            <li>✔ Full ad audit</li>
+            <li>✔ 15 new ad variations</li>
+            <li>✔ All platforms ready</li>
+          </ul>
+          <div class="stripe-btn w-full py-5 rounded-full text-xl font-black" onclick="checkout('price_1QuickWinExample123')">
+            Buy Now – Instant Access
+          </div>
+        </div>
+
+        <div class="pricing-card rounded-3xl p-10 text-center" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-5xl font-black card-price mb-2">$1,997</p>
+          <p class="text-2xl font-bold card-title mb-6">Conversion Booster Pack</p>
+          <p class="text-lg mb-8 text-gray-600">Ideal for e-comm stores ready to scale fast with ads + emails</p>
+          <ul class="text-left space-y-4 mb-10 text-lg">
+            <li>✔ 25–30 fresh ads</li>
+            <li>✔ 5-email sequence</li>
+            <li>✔ Full audit + strategy</li>
+          </ul>
+          <div class="stripe-btn w-full py-5 rounded-full text-xl font-black" onclick="checkout('price_1BoosterExample123')">
+            Buy Now – Instant Access
+          </div>
+        </div>
+
+        <div class="pricing-card rounded-3xl p-10 text-center most-popular" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-5xl font-black card-price mb-2">$3,497</p>
+          <p class="text-2xl font-bold card-title mb-6">Campaign in a Box</p>
+          <p class="text-lg mb-8 text-gray-600">Perfect for big launches, BFCM, or major promotions</p>
+          <ul class="text-left space-y-4 mb-10 text-lg">
+            <li>✔ 40+ ad creatives</li>
+            <li>✔ Landing page copy</li>
+            <li>✔ 7-email sequence</li>
+            <li>✔ Full strategy brief</li>
+          </ul>
+          <div class="stripe-btn w-full py-5 rounded-full text-xl font-black" onclick="checkout('price_1CampaignExample123')">
+            Buy Now – Lock In Spot
+          </div>
+        </div>
+
+        <div class="pricing-card rounded-3xl p-10 text-center" data-aos="fade-up" data-aos-delay="300">
+          <p class="text-5xl font-black card-price mb-2">$4,997</p>
+          <p class="text-2xl font-bold card-title mb-6">VIP Intensive Sprint</p>
+          <p class="text-lg mb-8 text-gray-600">For clients who need everything yesterday — unlimited in 7 days</p>
+          <ul class="text-left space-y-4 mb-10 text-lg">
+            <li>✔ Unlimited copy (~80–100 pieces)</li>
+            <li>✔ Daily check-ins</li>
+            <li>✔ 24-hour priority</li>
+          </ul>
+          <div class="stripe-btn w-full py-5 rounded-full text-xl font-black" onclick="checkout('price_1VIPExample123')">
+            Buy Now – Claim Sprint
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Retainers -->
+      <div class="bg-gradient-to-r from-gold/10 to-gold/5 rounded-3xl p-12 md:p-20">
+        <h3 class="text-4xl md:text-5xl font-black text-center mb-12 dark-gold">Monthly Retainers (Available After Your First Package)</h3>
+        <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          <div class="pricing-card rounded-3xl p-10 text-center">
+            <p class="text-4xl font-black card-price mb-2">$2,997/mo</p>
+            <p class="text-sm mb-6">(First month only <span class="gold">$2,497</span>)</p>
+            <p class="text-2xl font-bold card-title mb-6">Momentum</p>
+            <p class="text-lg mb-8 text-gray-600">Ideal ad spend: $10k–$50k/mo</p>
+            <ul class="text-left space-y-4 mb-10 text-lg">
+              <li>✔ Up to 30 ads/mo</li>
+              <li>✔ Up to 10 emails</li>
+              <li>✔ 1 monthly call</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-5 rounded-full block">Book Call to Unlock</a>
+          </div>
+
+          <div class="pricing-card rounded-3xl p-10 text-center most-popular">
+            <p class="text-5xl font-black card-price mb-4">$4,997/mo</p>
+            <p class="text-2xl font-bold card-title mb-6">Growth <span class="text-sm">(Most Popular)</span></p>
+            <p class="text-lg mb-8 text-gray-600">Ideal ad spend: $50k–$150k/mo</p>
+            <ul class="text-left space-y-4 mb-10 text-lg">
+              <li>✔ Unlimited ads (~60–80)</li>
+              <li>✔ Unlimited revisions</li>
+              <li>✔ 2 strategy calls/mo</li>
+              <li>✔ Quarterly VSL/upsell</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-5 rounded-full block">Book Call to Unlock</a>
+          </div>
+
+          <div class="pricing-card rounded-3xl p-10 text-center">
+            <p class="text-4xl font-black card-price mb-4">$7,997–$9,997/mo</p>
+            <p class="text-2xl font-bold card-title mb-6">Domination</p>
+            <p class="text-lg mb-8 text-gray-600">Ideal ad spend: $150k+/mo</p>
+            <ul class="text-left space-y-4 mb-10 text-lg">
+              <li>✔ Unlimited everything</li>
+              <li>✔ Weekly calls</li>
+              <li>✔ Full funnel builds</li>
+              <li>✔ Dedicated Slack channel</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-5 rounded-full block">Book Call to Unlock</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -160,60 +375,60 @@
   <section id="booking" class="py-40 gradient-bg text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="container mx-auto px-6 max-w-6xl text-center relative z-10">
-      <h2 class="text-5xl md:text-6xl lg:text-8xl font-black mb-10 glow-gold">
-        Claim Your Free Funnel Audit + Founding Client Spot
+      <h2 class="text-5xl md:text-6xl lg:text-8xl font-black mb-12 glow-gold">
+        Ready to Turn Your Leads Into Gold?
       </h2>
-      <p class="text-2xl md:text-3xl mb-12 opacity-90 max-w-4xl mx-auto">
-        30-minute call. We'll tear apart your current funnel live, show you exactly where you're losing money, and give you a custom million-dollar copy plan — even if you never hire us.
+      <p class="text-2xl md:text-3xl mb-16 opacity-90 max-w-4xl mx-auto">
+        Book your free 30-minute funnel audit. We'll show you exactly where you're losing money and how to fix it — even if you never hire us.
       </p>
-      <a href="https://calendly.com/yourname/verbalchemy-audit" target="_blank" class="inline-block btn-gold text-3xl md:text-4xl px-20 py-10 rounded-full shadow-2xl font-black">
-        YES — BOOK MY FREE AUDIT NOW
+      <a href="https://calendly.com/yourname/verbalchemy-audit" target="_blank" class="inline-block btn-gold text-3xl md:text-4xl px-24 py-12 rounded-full shadow-2xl font-black">
+        YES — BOOK MY FREE AUDIT
       </a>
-      <p class="mt-12 text-2xl opacity-80" id="scarcity2">Only <span class="font-black gold text-4xl">5</span> spots remaining this week</p>
+      <p class="mt-16 text-2xl opacity-80" id="scarcity2">Only <span class="font-black gold text-4xl">5</span> founding spots left</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#0f0b06] text-silver py-16 border-t-4 border-gold">
+  <footer class="bg-[#0f0b06] text-silver py-20 border-t-4 border-gold">
     <div class="container mx-auto px-6 text-center">
-      <p class="text-4xl font-bold mb-2 gold">VerbAlchemy</p>
+      <p class="text-4xl font-black mb-2 gold">VerbAlchemy</p>
       <p class="text-2xl italic mb-8">We don't write copy. We turn lead into gold.</p>
-      <p class="text-sm opacity-70">© 2025–2026 VerbAlchemy. All rights reserved.</p>
+      <p class="text-sm opacity-70">© 2025 VerbAlchemy. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- JavaScript -->
   <script>
-    // Initialize AOS
-    AOS.init({ duration: 1000, once: true });
+    AOS.init({ duration: 1200, once: true, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
 
-    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
     });
 
-    // Scarcity counter (slowly decreases to trigger FOMO)
+    const stripe = Stripe('pk_live_your_publishable_key_here');
+
+    function checkout(priceId) {
+      stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'payment',
+        successUrl: window.location.origin + '/success.html',
+        cancelUrl: window.location.origin + '/cancel.html',
+      });
+    }
+
     let spotsLeft = 5;
     const scarcityElements = [document.getElementById('scarcity'), document.getElementById('scarcity2')];
-    
     setInterval(() => {
       if (spotsLeft > 1 && Math.random() > 0.65) {
         spotsLeft--;
         scarcityElements.forEach(el => {
-          if (el) {
-            el.innerHTML = `Only <span class="font-black gold text-4xl">${spotsLeft}</span> spots remaining this week`;
-          }
+          if (el) el.innerHTML = `Only <span class="font-black gold text-4xl">${spotsLeft}</span> founding spots left`;
         });
       }
-    }, 45000); // Every ~45 seconds chance to drop
+    }, 50000);
   </script>
-
 </body>
 </html>
-
-

@@ -16,7 +16,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Particles.js -->
+  <!-- Particles.js for gold dust + mouse trail -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <!-- Stripe.js -->
@@ -118,25 +118,39 @@
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.9); }
       70% { box-shadow: 0 0 0 40px rgba(212, 175, 55, 0); }
-      100% { box-shadow: 0 0 0 0 0 rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
     }
 
-    /* Mobile menu */
-    #mobileMenu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: rgba(15,11,6,0.98);
-      backdrop-filter: blur(20px);
-      z-index: 999;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      font-size: 2rem;
+    .vault-card {
+      background: linear-gradient(135deg, #1c140d, #0f0b06);
+      border: 1px solid #d4af37/30;
+      position: relative;
+      overflow: hidden;
+    }
+    .vault-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, #d4af37, transparent);
+      animation: rotate 20s linear infinite;
+      opacity: 0.1;
+    }
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Mobile fixes */
+    @media (max-width: 768px) {
+      h1 { font-size: 4rem; word-wrap: break-word; }
+      h2 { font-size: 3.5rem; }
+      h3 { font-size: 2.5rem; }
+      p { font-size: 1.25rem; }
+      .btn-gold { font-size: 1.5rem; padding: 1rem 2rem; }
+      .pricing-card { margin-bottom: 2rem; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -165,12 +179,12 @@
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobileMenu">
-    <a href="#vault">The Vault</a>
-    <a href="#samples">Proof</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#pricing">Investment</a>
-    <a href="#booking" class="btn-gold px-16 py-6 rounded-full text-2xl">Book Audit →</a>
+  <div id="mobileMenu" class="hidden fixed inset-0 bg-[#0f0b06]/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 text-2xl">
+    <a href="#vault" class="hover:gold transition">The Vault</a>
+    <a href="#samples" class="hover:gold transition">Proof</a>
+    <a href="#testimonials" class="hover:gold transition">Testimonials</a>
+    <a href="#pricing" class="hover:gold transition">Investment</a>
+    <a href="#booking" class="btn-gold px-12 py-5 rounded-full text-xl">Book Audit →</a>
   </div>
 
   <!-- Hero -->
@@ -252,6 +266,29 @@
     </div>
   </section>
 
+  <!-- Forbidden Mechanisms -->
+  <section class="py-52 gradient-bg text-white">
+    <div class="container mx-auto px-6 max-w-6xl text-center">
+      <h2 class="text-6xl md:text-7xl font-black mb-20 gold glow-gold" data-aos="fade-up">
+        The Forbidden Mechanisms We’re Trained On
+      </h2>
+      <div class="grid md:grid-cols-3 gap-16">
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-3xl font-black mb-6 gold">The Godfather Offer</h3>
+          <p class="text-xl opacity-90">An offer so irresistible they’d be stupid to refuse — even if they hate you.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-3xl font-black mb-6 gold">Buried Proof Mechanism</h3>
+          <p class="text-xl opacity-90">Hidden clinical studies, suppressed research, and "banned" protocols the industry prays stay buried.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="500">
+          <h3 class="text-3xl font-black mb-6 gold">Emotional Hijacking</h3>
+          <p class="text-xl opacity-90">We don’t tell stories. We perform open-heart surgery on their deepest pain and desires.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- The Vault -->
   <section id="vault" class="py-52 bg-gradient-to-b from-[#1c140d] to-[#0f0b06]">
     <div class="container mx-auto px-6 max-w-7xl">
@@ -326,8 +363,8 @@
   </section>
 
   <!-- Founding Client Special -->
-  <section class="py-52 bg-gradient-to-b from-[#1c140d] to-[#0f0b06]">
-    <div class="container mx-auto px-6 max-w-6xl text-center">
+  <section class="py-52 bg-gradient-to-b from [#1c140d] to [#0f0b06]">
+    <div class="container mx-auto px-6 max-w-7xl text-center">
       <h2 class="text-6xl md:text-7xl font-black mb-20 gold glow-gold">Founding Client Launch Special — Final 3 Spots</h2>
       <p class="text-3xl md:text-4xl leading-relaxed mb-24 opacity-90">
         Lock in 40% lower rates forever + obscene bonuses when you become one of our last 3 founding clients:
@@ -344,7 +381,7 @@
   </section>
 
   <!-- PRICING SECTION -->
-  <section id="pricing" class="py-60 bg-gradient-to-b from-[#0f0b06] to-[#1c140d]">
+  <section id="pricing" class="py-60 bg-gradient-to-b from [#0f0b06] to [#1c140d]">
     <div class="container mx-auto px-6 max-w-7xl">
       <h2 class="text-6xl md:text-7xl lg:text-8xl font-black text-center mb-16 dark-gold glow-gold">Investment That Pays For Itself 20–100x</h2>
       <p class="text-center text-3xl mb-40 opacity-90">Founding client rates already applied — secure your spot before your competitor does</p>
@@ -366,14 +403,93 @@
           </div>
         </div>
 
-        <!-- The other 3 cards are exactly as you had them — full code included below -->
-        <!-- ... (all 4 cards are here in the full file) ... -->
+        <div class="pricing-card rounded-3xl p-16 text-center" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-7xl font-black card-price mb-6 gold">$1,997</p>
+          <p class="text-3xl font-bold card-title mb-10">Conversion Booster Pack</p>
+          <p class="text-xl mb-16 opacity-80">For brands ready to scale ads + emails fast</p>
+          <ul class="text-left space-y-6 mb-20 text-lg">
+            <li>✔ 25–30 fresh ads</li>
+            <li>✔ 5-email sequence</li>
+            <li>✔ Full audit + strategy</li>
+            <li>✔ Performance guarantee</li>
+          </ul>
+          <div class="btn-gold w-full py-7 rounded-full text-2xl font-black" onclick="checkout('price_1Booster')">
+            Buy Now — Instant Access
+          </div>
+        </div>
 
+        <div class="pricing-card rounded-3xl p-16 text-center most-popular" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-7xl font-black card-price mb-6 gold">$3,497</p>
+          <p class="text-3xl font-bold card-title mb-10">Campaign in a Box</p>
+          <p class="text-xl mb-16 opacity-80">Perfect for launches, BFCM, or total domination</p>
+          <ul class="text-left space-y-6 mb-20 text-lg">
+            <li>✔ 40+ ad creatives</li>
+            <li>✔ Landing page copy</li>
+            <li>✔ 7-email sequence</li>
+            <li>✔ Full strategy brief</li>
+            <li>✔ Free 21-day follow-up</li>
+          </ul>
+          <div class="btn-gold w-full py-7 rounded-full text-2xl font-black" onclick="checkout('price_1Campaign')">
+            Lock In Founding Spot
+          </div>
+        </div>
+
+        <div class="pricing-card rounded-3xl p-16 text-center" data-aos="fade-up" data-aos-delay="300">
+          <p class="text-7xl font-black card-price mb-6 gold">$4,997</p>
+          <p class="text-3xl font-bold card-title mb-10">VIP Intensive Sprint</p>
+          <p class="text-xl mb-16 opacity-80">For clients who need everything yesterday</p>
+          <ul class="text-left space-y-6 mb-20 text-lg">
+            <li>✔ Unlimited copy in 7 days</li>
+            <li>✔ Daily check-ins</li>
+            <li>✔ 24-hour priority</li>
+            <li>✔ Full funnel build</li>
+          </ul>
+          <div class="btn-gold w-full py-7 rounded-full text-2xl font-black" onclick="checkout('price_1VIP')">
+            Claim Your Sprint
+          </div>
+        </div>
       </div>
 
       <!-- Monthly Retainers -->
       <div class="bg-gradient-to-r from-gold/10 to-gold/5 rounded-3xl p-24 md:p-40">
-        <!-- Full retainer cards here -->
+        <h3 class="text-5xl md:text-6xl font-black text-center mb-24 dark-gold">Monthly Retainers (After Your First Package)</h3>
+        <div class="grid md:grid-cols-3 gap-20 max-w-7xl mx-auto">
+          <div class="pricing-card rounded-3xl p-16 text-center">
+            <p class="text-6xl font-black card-price mb-6 gold">$2,997/mo</p>
+            <p class="text-sm mb-10">(First month only <span class="gold">$2,497</span>)</p>
+            <p class="text-3xl font-bold card-title mb-10">Momentum</p>
+            <ul class="text-left space-y-6 mb-20 text-xl">
+              <li>✔ Up to 30 ads/mo</li>
+              <li>✔ Up to 10 emails</li>
+              <li>✔ 1 monthly call</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-7 rounded-full block text-2xl font-black">Book Call to Unlock</a>
+          </div>
+
+          <div class="pricing-card rounded-3xl p-16 text-center most-popular">
+            <p class="text-7xl font-black card-price mb-8 gold">$4,997/mo</p>
+            <p class="text-3xl font-bold card-title mb-10">Growth <span class="text-lg">(Most Popular)</span></p>
+            <ul class="text-left space-y-6 mb-20 text-xl">
+              <li>✔ Unlimited ads (~60–80)</li>
+              <li>✔ Unlimited revisions</li>
+              <li>✔ 2 strategy calls/mo</li>
+              <li>✔ Quarterly VSL/upsell</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-7 rounded-full block text-2xl font-black">Book Call to Unlock</a>
+          </div>
+
+          <div class="pricing-card rounded-3xl p-16 text-center">
+            <p class="text-6xl font-black card-price mb-8 gold">$7,997–$9,997/mo</p>
+            <p class="text-3xl font-bold card-title mb-10">Domination</p>
+            <ul class="text-left space-y-6 mb-20 text-xl">
+              <li>✔ Unlimited everything</li>
+              <li>✔ Weekly calls</li>
+              <li>✔ Full funnel builds</li>
+              <li>✔ Dedicated Slack channel</li>
+            </ul>
+            <a href="#booking" class="btn-gold w-full py-7 rounded-full block text-2xl font-black">Book Call to Unlock</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -410,6 +526,7 @@
   <script>
     AOS.init({ duration: 1800, once: true, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
 
+    // Gold dust particles + mouse trail
     particlesJS('particles-js', {
       "particles": {
         "number": { "value": 120, "density": { "enable": true, "value_area": 800 } },
@@ -448,17 +565,17 @@
       }
     });
 
-    // Mobile menu
-    document.getElementById('hamburger').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
+    });
+
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 
     const stripe = Stripe('pk_live_51YOUR_REAL_KEY_HERE');

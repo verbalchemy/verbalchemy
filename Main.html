@@ -141,6 +141,32 @@
     @keyframes rotate {
       100% { transform: rotate(360deg); }
     }
+
+    /* Nav tabs fix – bigger text, backgrounds, logo space */
+    .nav-tab {
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 999px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.25rem;
+      transition: background 0.3s;
+    }
+    .nav-tab:hover {
+      background: rgba(212, 175, 55, 0.3);
+    }
+
+    /* Footer centering */
+    footer p { text-align: center !important; }
+
+    /* Autopsy button fix – smaller bubble, larger text */
+    .autopsy-btn { padding: 1rem 2rem !important; font-size: 2rem !important; }
+
+    /* Pricing fix – straight across, no cut-offs */
+    .card-price {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1;
+    }
   </style>
 </head>
 <body class="min-h-screen content-wrapper">
@@ -155,12 +181,15 @@
   <!-- Sticky Nav -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0f0b06]/95 backdrop-blur-xl border-b border-gold/30">
     <div class="container mx-auto px-6 py-6 flex justify-between items-center">
-      <a href="#" class="text-4xl font-black gold tracking-wider">VerbAlchemy</a>
-      <div class="hidden md:flex gap-16 text-white font-medium text-lg">
-        <a href="#vault" class="hover:gold transition">The Vault</a>
-        <a href="#samples" class="hover:gold transition">Proof</a>
-        <a href="#testimonials" class="hover:gold transition">Testimonials</a>
-        <a href="#pricing" class="hover:gold transition">Investment</a>
+      <div class="flex items-center">
+        <img src="your-logo-url-here.png" alt="VerbAlchemy Logo" class="h-10 mr-4"> <!-- Logo space – replace src with your logo URL -->
+        <a href="#" class="text-4xl font-black gold tracking-wider">VerbAlchemy</a>
+      </div>
+      <div class="hidden md:flex gap-8 text-white font-medium text-lg">
+        <a href="#vault" class="nav-tab hover:gold transition">The Vault</a>
+        <a href="#samples" class="nav-tab hover:gold transition">Proof</a>
+        <a href="#testimonials" class="nav-tab hover:gold transition">Testimonials</a>
+        <a href="#pricing" class="nav-tab hover:gold transition">Investment</a>
         <a href="#booking" class="btn-gold px-12 py-5 rounded-full text-xl font-black">Book Audit →</a>
       </div>
     </div>
@@ -168,7 +197,7 @@
 
   <!-- Hero -->
   <section class="gradient-bg text-white py-40 md:py-64 overflow-hidden relative pt-32">
-    <div class="container mx auto px-6 max-w-7xl relative z-10 text-center">
+    <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
       <h1 class="text-6xl md:text-8xl lg:text-9xl font-black leading-tight mb-16 glow-gold" data-aos="zoom-in">
         We Don't Write Copy.<br><br>
         We <span class="pop">Turn Lead</span> Into <span class="pop">Gold</span>.
@@ -196,7 +225,7 @@
 
   <!-- Problem Agitation -->
   <section class="py-44 gradient-bg text-white">
-    <div class="container mx auto px-6 max-w-5xl text-center">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
       <h2 class="text-6xl md:text-7xl lg:text-8xl font-black mb-16 dark-gold glow-gold" data-aos="fade-up">
         Your Funnel Is Bleeding Millions<br>— And Nobody Had The Balls To Tell You
       </h2>
@@ -348,7 +377,7 @@
       <p class="text-2xl md:text-3xl leading-relaxed mb-16 opacity-90">
         Lock in 40% lower rates forever + obscene bonuses when you become one of our last 3 founding clients:
       </p>
-      <ul class="text-xl md:text-2xl space-y-8 max-w-4xl mx auto text-left md:text-center">
+      <ul class="text-xl md:text-2xl space-y-8 max-w-4xl mx-auto text-left md:text-center">
         <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Permanent 40% grandfathered discount on everything</li>
         <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Free 21-day email sequence with every sales page</li>
         <li class="flex items-center justify-center gap-4"><span class="text-4xl gold">✦</span> Priority delivery + lifetime model upgrades</li>
@@ -475,11 +504,11 @@
 
   <!-- Final CTA -->
   <section id="booking" class="py-64 gradient-bg text-white relative overflow-hidden">
-    <div class="container mx auto px-6 max-w-7xl text-center relative z-10">
+    <div class="container mx-auto px-6 max-w-7xl text-center relative z-10">
       <h2 class="text-6xl md:text-8xl lg:text-9xl font-black mb-24 glow-gold">
         Ready to Turn Your Leads Into Gold?
       </h2>
-      <p class="text-3xl md:text-4xl mb-32 opacity-90 max-w-5xl mx auto leading-relaxed">
+      <p class="text-3xl md:text-4xl mb-32 opacity-90 max-w-5xl mx-auto leading-relaxed">
         Book your free 30-minute funnel autopsy right now.<br><br>
         We'll rip your current funnel apart live, show you exactly where you're bleeding millions, and hand you the fixes on a silver platter — even if you never pay us a cent.
       </p>

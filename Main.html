@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +23,11 @@
   
   <style>
     html { font-size: 67%; } /* Scales everything to mimic 67% zoom – perfect fit, readable, impactful */
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background-color: #0f0b06; 
-      color: #e8e4db; 
-      overflow-x: hidden; 
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0b06;
+      color: #e8e4db;
+      overflow-x: hidden;
       hyphens: auto;
       word-wrap: break-word;
       line-height: 1.8;
@@ -36,24 +37,24 @@
     .gold { color: #d4af37; }
     .dark-gold { color: #b8860b; }
     .glow-gold { text-shadow: 0 0 80px rgba(212, 175, 55, 0.8); }
-    .pop { 
-      background: linear-gradient(to right, #d4af37, #ffd700); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-      font-weight: 900; 
+    .pop {
+      background: linear-gradient(to right, #d4af37, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
     }
     .gradient-bg { background: linear-gradient(135deg, #1c140d 0%, #0f0b06 100%); }
-    .btn-gold { 
-      background: linear-gradient(to right, #d4af37, #ffd700); 
-      color: #0f0b06; 
+    .btn-gold {
+      background: linear-gradient(to right, #d4af37, #ffd700);
+      color: #0f0b06;
       font-weight: 900;
       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
       box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
     }
-    .btn-gold:hover { 
-      background: linear-gradient(to right, #ffd700, #fff8dc); 
-      transform: translateY(-10px) scale(1.05); 
-      box-shadow: 0 50px 100px rgba(212, 175, 55, 0.6); 
+    .btn-gold:hover {
+      background: linear-gradient(to right, #ffd700, #fff8dc);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 50px 100px rgba(212, 175, 55, 0.6);
     }
     #particles-js {
       position: fixed;
@@ -453,7 +454,7 @@
         Book your free 30-minute funnel autopsy right now.<br><br>
         We'll rip your current funnel apart live, show you exactly where you're bleeding millions, and hand you the fixes on a silver platter — even if you never pay us a cent.
       </p>
-      <a href="https://calendly.com/verbalchemy/audit" target="_blank" class="inline-block btn-gold text-4xl md:text-5xl px-48 py-20 rounded-full shadow-2xl font-black">
+      <a href="https://calendly.com/verbalchemyllc/30min?month=2025-12" target="_blank" class="inline-block btn-gold text-4xl md:text-5xl px-48 py-20 rounded-full shadow-2xl font-black">
         YES — BOOK MY FREE AUTOPSY NOW
       </a>
       <p class="mt-40 text-3xl font-black gold glow-gold animate-pulse">
@@ -484,15 +485,15 @@
       },
       "interactivity": {
         "detect_on": "canvas",
-        "events": { 
-          "onhover": { "enable": true, "mode": "repulse" }, 
-          "onclick": { "enable": true, "mode": "push" } 
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
         }
       },
       "retina_detect": true
     });
     // Scarcity pressure
-    let spots = 3;
+    let spots = 5;
     const spotsElements = [document.getElementById('hero-spots'), document.getElementById('spots-left'), document.getElementById('final-spots')];
     
     setInterval(() => {
@@ -504,7 +505,7 @@
     }, 75000);
     // Show scarcity bar on scroll
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 1200 && spots <= 3) {
+      if (window.scrollY > 1200 && spots <= 5) {
         document.getElementById('scarcity-bar').style.display = 'block';
       }
     });
@@ -527,3 +528,4 @@
   </script>
 </body>
 </html>
+```
